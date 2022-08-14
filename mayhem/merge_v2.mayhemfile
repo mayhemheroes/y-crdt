@@ -1,0 +1,7 @@
+project: y-crdt
+target: merge-v2
+
+cmds:
+  - cmd: /merge_v2
+  - cmd: /merge_v2_no_inst @@
+    libfuzzer: false
