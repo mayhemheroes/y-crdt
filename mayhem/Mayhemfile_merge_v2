@@ -1,0 +1,7 @@
+project: y-crdt
+target: merge-v2
+testsuite:
+  - file:///mayhem/mayhem/testsuite/merge_v2
+cmds:
+  - cmd: /mayhem/merge_v2
+    libfuzzer: true

@@ -1,0 +1,40 @@
+# Additive cargo-fuzz crate for the Mayhem integration.
+#
+# Upstream y-crdt ships NO fuzz/ directory, so (per the port-rust skill) we add this
+# ADDITIVE crate under mayhem/ instead of editing upstream. It mirrors the harnesses the
+# original mayhemheroes fork shipped (merge_v1 / merge_v2), pointed at the upstream `yrs`
+# crate via a relative path. It is its OWN single-crate workspace so it does not perturb
+# the upstream workspace at the repo root.
+[package]
+name = "yrs-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.yrs]
+path = "../../yrs"
+
+# Keep this crate out of the upstream workspace at the repo root.
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = 1
+
+[[bin]]
+name = "merge_v1"
+path = "fuzz_targets/merge_v1.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "merge_v2"
+path = "fuzz_targets/merge_v2.rs"
+test = false
+doc = false
