@@ -1,0 +1,8 @@
+project: y-crdt
+target: merge-v2
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/merge-v2/testsuite
+cmds:
+  - cmd: /mayhem/merge_v2
+    libfuzzer: true
